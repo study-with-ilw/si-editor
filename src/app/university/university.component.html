@@ -1,0 +1,719 @@
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h4 class="text-center"><a href="/">Study Ireland</a></h4>
+    </div>
+
+    <ul class="list-unstyled CTAs">
+      <li>
+        <a href="/contact-us" class="download">Contact Us</a>
+      </li>
+    </ul>
+
+    <ul class="list-unstyled components">
+      <li class="list-unstyled components">
+        <a href="/about-us">About Us</a>
+      </li>
+      <li class="list-unstyled components">
+        <a
+          href="#UniversityList"
+          data-toggle="collapse"
+          aria-expanded="false"
+          class="dropdown-toggle"
+          >University Profiles</a
+        >
+        <ul class="collapse list-unstyled" id="UniversityList">
+          <li *ngFor="let list of this.model.blogList" style="text-align: center;">
+            <span style="padding: 5px 0px; cursor: pointer;" (click)="showUniversity(list, 'university')">{{ list }}</span>
+            <i class="lni-trash" [swal]="deleteSwal" aria-hidden="false"></i>
+            <swal #deleteSwal
+              title="Delete {{ list }}?"
+              text="This cannot be undone"
+              icon="question"
+              [showCancelButton]="true"
+              [focusCancel]="true"
+              (confirm)="delete(list, 'university')">
+            </swal>
+          </li>
+          <li class="add-blog">
+            <button data-toggle="modal" data-target="#add-blog" (click)="contentType='university'">
+              Add University
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li class="list-unstyled components">
+        <a href="../../courses/">University Courses</a>
+      </li>
+      <li class="list-unstyled components">
+        <a href="#blogsList"
+        data-toggle="collapse"
+        aria-expanded="false"
+        class="dropdown-toggle">Blogs</a>
+        <ul class="collapse list-unstyled" id="blogsList">
+          <li *ngFor="let list of this.blogModel.blogList" style="text-align: center;">
+            <span style="padding: 5px 0px; cursor: pointer;" (click)="showBlog(list, 'blog')">{{ list }}</span>
+            <i class="lni-trash" [swal]="deleteSwal" aria-hidden="false"></i>
+            <swal #deleteSwal
+              title="Delete {{ list }}?"
+              text="This cannot be undone"
+              icon="question"
+              [showCancelButton]="true"
+              [focusCancel]="true"
+              (confirm)="delete(list, 'blog')">
+            </swal>
+          </li>
+          <li class="add-blog">
+            <button data-toggle="modal" data-target="#add-blog" (click)="contentType='blog'">
+              Add Blog
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          href="#newsEventsMenu"
+          data-toggle="collapse"
+          aria-expanded="false"
+          class="dropdown-toggle"
+          >News and Events</a
+        >
+        <ul class="collapse list-unstyled" id="newsEventsMenu">
+          <li>
+            <a href="#newsList"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="dropdown-toggle">News</a>
+            <ul class="collapse list-unstyled" id="newsList">
+              <li *ngFor="let list of this.model.newsList" style="text-align: center;">
+                <span style="padding: 5px 0px; cursor: pointer;" (click)="show(list, 'news')">{{ list }}</span>
+                <i class="lni-trash" [swal]="deleteSwal" aria-hidden="false"></i>
+                <swal #deleteSwal
+                  title="Delete {{ list }}?"
+                  text="This cannot be undone"
+                  icon="question"
+                  [showCancelButton]="true"
+                  [focusCancel]="true"
+                  (confirm)="delete(list, 'news')">
+                </swal>
+              </li>
+              <li class="add-blog">
+                <button data-toggle="modal" data-target="#add-blog" (click)="contentType='news'">
+                  Add News
+                </button>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#eventsList"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="dropdown-toggle">Events</a>
+            <ul class="collapse list-unstyled" id="eventsList">
+              <li *ngFor="let list of this.model.eventList" style="text-align: center;">
+                <span style="padding: 5px 0px; cursor: pointer;" (click)="show(list, 'event')">{{ list }}</span>
+                <i class="lni-trash" [swal]="deleteSwal" aria-hidden="false"></i>
+                <swal #deleteSwal
+                  title="Delete {{ list }}?"
+                  text="This cannot be undone"
+                  icon="question"
+                  [showCancelButton]="true"
+                  [focusCancel]="true"
+                  (confirm)="delete(list, 'event')">
+                </swal>
+              </li>
+              <li class="add-blog">
+                <button data-toggle="modal" data-target="#add-blog" (click)="contentType='event'">
+                  Add Event
+                </button>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="list-unstyled components">
+        <a href="#landingPageList"
+        data-toggle="collapse"
+        aria-expanded="false"
+        class="dropdown-toggle"
+        (click)="switchToLandingPage()">Landing Page</a>
+        <ul class="collapse list-unstyled" id="landingPageList">
+          <li *ngFor="let list of this.model.landingPageList" style="text-align: center;">
+            <span style="padding: 5px 0px; cursor: pointer;" (click)="show(list, 'landingPage')">{{ list }}</span>
+            <i class="lni-trash" [swal]="deleteSwal" aria-hidden="false"></i>
+            <swal #deleteSwal
+              title="Delete {{ list }}?"
+              text="This cannot be undone"
+              icon="question"
+              [showCancelButton]="true"
+              [focusCancel]="true"
+              (confirm)="delete(list, 'landingPage')">
+            </swal>
+          </li>
+          <li class="add-blog">
+            <button data-toggle="modal" data-target="#add-blog" (click)="contentType='landingPage'">
+              Add
+            </button>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button type="button" id="sidebarCollapse" class="btn btn-toggler">
+          <i class="fas fa-align-left"></i>
+          <!-- <span>Toggle Sidebar</span> -->
+        </button>
+
+        <div class="ml-auto text-center">
+          <img
+            src="./assets/images/si-logo.png"
+            style="height: 50px; width: 130px;"
+          />
+        </div>
+
+        <button
+          class="btn btn-dark d-inline-block d-lg-none ml-auto"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-align-justify"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://api.whatsapp.com/send?phone=917050512345"
+                text="Hello,%20I%20am%20looking%20to%20study%20in%20Ireland%20and%20want%20to%20know%20more%20about%20your%20services.%20Can%20we%20talk?"
+              >
+                <i class="lni-whatsapp"></i>
+                Send Message
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tel:+917050512345">
+                <i class="lni-phone-handset"></i>
+                Call us
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../contact-us/">
+                <i class="lni-book"></i>
+                Book a Free Consultation
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <ng-container *ngIf="!landingPage">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../../">Home</a></li>
+          <li class="breadcrumb-item">
+            <a href="../../universities/">Universities</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <a href="../../universities/athlone-institute-technology"
+              >{{model.blogData.title}}</a
+            >
+          </li>
+        </ol>
+      </nav>
+      <label for="upload-image" class="btn btn-info">Add University Image</label>
+      <input
+        #file
+        id="upload-image"
+        type="file"
+        accept="image/*"
+        (change)="preview(file.files)"
+      />
+      <label for="upload-logo" class="btn btn-info">Add University logo</label>
+      <input
+        #file
+        id="upload-logo"
+        type="file"
+        accept="image/*"
+        (change)="logo(file.files)"
+      />
+      <div class="university-landing-image" style="width: 100%; height:340px">
+        <img
+          class="img-fluid thumbnail-img"
+          [src]="model.imgURL"
+          *ngIf="model.imgURL"
+        />
+      </div>
+
+      <div class="row col-12">
+        <h3>
+          <input
+            type="input"
+            [disabled]="active"
+            [(ngModel)]="model.blogData.title"
+            value="title"
+            class="university-header"
+          />
+        </h3>
+        <button class="edit-title" (click)="editTitle()">
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+      </div>
+      <div class="inner-section-spacing">
+        <tag-input
+          [(ngModel)]="model.blogData.tags"
+          (onAdd)="change($event)"
+          (onRemove)="change($event)"
+        >
+        </tag-input>
+      </div>
+
+      <ckeditor [editor]="Editor" [(ngModel)]="model.data"></ckeditor>
+      <button (click)="uploadPost('')" class="btn btn-primary">Submit</button>
+      <button (click)="uploadPost(true)" class="btn btn-primary">Publish</button>
+      <button (click)="uploadPost(false)" class="btn btn-primary">Unpublish</button>
+      <button routerLink="/publish" class="btn btn-primary">Go to publish</button>
+    </ng-container>
+
+      <ng-container *ngIf="landingPage">
+        <head>
+       <!-- CUSTOM STYLESHEET -->
+       <link rel="stylesheet" href="http://www.fateheducation.com/customerlab/help26/css/style.css">
+      <style>
+      .form-control 
+      {
+          height: 34px;
+      }
+      </style>
+      <style>
+          .Whole-div
+      {
+          height: 100%;
+          position: relative;
+          padding: 20px 0px;
+      }
+      .loader {
+        border: 16px solid #A0C5E6;
+        border-radius: 50%;
+        border-top: 16px solid #2577BE;
+        width: 75px;
+        height: 75px;
+        -webkit-animation: spin 1s linear infinite; /* Safari */
+        animation: spin 1s linear infinite;
+        margin:100px auto !important;
+      }
+      
+      /* Safari */
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .counselor_info
+      {
+          padding: 20px 15px;
+      }
+      .counselor_details
+      {
+          margin: 30px 0px;
+      }
+      .counselor_label
+      {
+          margin-bottom: 0px;
+          color: #fff !important;
+      }
+      .counselor_wrap
+      {
+          word-wrap: break-word;
+          color: #fff !important;
+          font-weight: 500;
+      }
+      .counselor_details h4
+      {
+          margin-bottom: 20px;
+      }
+      .info_message
+      {
+          color: #fff !important;
+      }
+      </style>
+      </head>
+        <body data-spy="scroll" data-target="#main-navbar">
+          <div class="main-container" id="page">
+              <!-- =========================
+                  HERO SECTION
+              ============================== -->
+              <section id="hero11" class="bg-img hero-leadbox content-align-md" style="background-image:url('http://www.fateheducation.com/customerlab/help26/images/Header-v1.jpg');">
+                  <div class="overlay"></div>
+      
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-md-12 y-middle c2">
+                              <!-- Intro Text -->
+                              <div class="col-md-6 center-md text-white">
+                                <ckeditor [editor]="Editor" [(ngModel)]="model.data"></ckeditor>
+      
+                              </div>
+                              <!-- Booking Form -->
+                              <div class="col-md-6"> 
+                                  <form class="form-horizontal form-white form-2col text-white" id="dateForm" name="FORM 0" method="Post" enctype="multipart/form-data" action="https://web.mxradon.com/t/FormTracker.aspx">
+                                      <h4 class="text-center">Register Now For Free Counselling</h4>
+                                      <p class="text-center m-b-md">
+                                      </p><div class="form-group w-51">
+                                          <input type="text" class="form-control" name="FirstName" id="dfName" placeholder="Name" required="">
+      
+                                      </div>
+                                      <div class="form-group w-50">
+      
+                                          <input type="email" class="form-control" id="dfEmail" placeholder="Email" name="EmailAddress" required=""> 
+                                          <input type="tel" class="form-control" id="dfPhone" placeholder="Phone Number" name="Phone" required="">
+                                      </div>
+                                    
+                                      <div class="form-group w-51">
+      
+                                          <select id="dfphone" name="mx_Choose_Ireland_Event" class="form-control" required="">
+                                              <option value="">Choose Ireland Event
+                                              </option><option value="Delhi">Delhi
+                                              </option><option value="Pune">Pune
+                                              </option><option value="Mumbai">Mumbai
+                                              </option><option value="Chennai">Chennai
+                                              </option><option value="Bangalore">Bangalore
+      
+      
+                                          </option></select>
+                                      </div>
+      
+      
+                                      <div class="form-group w-51">
+      
+                                          <select id="dfphone" name="mx_Looking_to_Join" class="form-control" required="">
+                                              <option value="">Looking for which intake
+                                              </option><option value="Sep 2020">Sep 2020
+                                              </option><option value="Jan 2021">Jan 2021
+                                              </option><option value="Sep 2021">Sep 2021 
+                                              </option><option value="Later">Later
+      
+      
+                                          </option></select>
+                                      </div>
+      
+                                      <div class="form-group w-51">
+      
+                                          <select id="dfphone" name="mx_Preferred_Time_to_Call" class="form-control" required="">
+                                              <option value="">Preferred Time to Call
+                                              </option><option value="10:00 am to 12 noon">10:00 am to 12 noon 
+                                              </option><option value="12:01 pm to 4:00 pm">12:01 pm to 4:00 pm
+                                              </option><option value="4:01 pm to 7:00 pm ">4:01 pm to 7:00 pm 
+      
+      
+      
+                                          </option></select>
+                                      </div>
+                                      <div class="form-group w-51">
+      
+                                          <select id="dfphone" name="mx_Financial_Preparedness" class="form-control" required="">
+                                              <option value="">Financial Preparedness
+                                              </option><option value="Own funds ">Own funds 
+                                              </option><option value="Own funds and Loan/Scholarship ">Own funds and Loan/Scholarship 
+                                              </option><option value="Loan and Scholarship/grants ">Loan and Scholarship/grants 
+                                              </option><option value="Other"> Other 
+      
+      
+                                          </option></select>
+                                      </div>
+      
+                                      <div class="form-group">
+                                          <textarea id="dfMessage" rows="2" class="form-control" placeholder="Comments" name="Notes" required=""></textarea>
+                                      </div>
+                                      <div class="form-group">
+                                          <button type="submit" class="btn btn-shadow btn-blue-hero">REGISTER NOW</button>
+                                      </div>
+                                  <input type="hidden" name="MXHOrgCode" value="798"><input type="hidden" name="MXHLandingPageId" value="3993c23b-1811-11ea-a83f-0268638e5f02"><input type="hidden" name="MXHFormBehaviour" value="1"><input type="hidden" name="MXHOutputMessagePosition" value="0"><input type="hidden" name="MXHFormDataTransfer" value="0"><input type="hidden" name="MXHRedirectUrl" value="http://pages.fateheducation.com/IR-Admissions-Day-Thank-You-HELP7-IR"><input type="hidden" name="MXHAsc" value="50"><input type="hidden" name="MXHFormName" value="FORM 0"><input type="hidden" name="MXHSecretKey" value=""></form>
+                              </div><!-- /End Booking Form -->
+                          </div><!-- /End Col -->
+                      </div><!-- /End Row -->
+                  </div><!-- /End Container -->
+      
+              </section>
+              <!-- /End Hero Section -->
+      
+      
+              <!-- =========================
+                 CONTENT SECTION
+              ============================== -->
+              <section id="content2-1" class="content-spotlight bg-edit p-t-lg">
+      
+                  <!-- Section Header -->
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-md-8 col-md-offset-2">
+                              <div class="section-header text-center wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+                                  <h2 class="m-b-md">Why Should You Attend The Fair?</h2>
+                                  <!-- <p class="lead m-b-md"></p></p> -->
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+      
+                  <div class="container p-a-0">
+      
+                      <div class="row m-a-0 spotlight-block img-right">
+                          <!-- Image Block -->
+                          <figure class="col-md-6 col-md-push-6 p-a-0">
+                              <div class="img-wrap" style="background-image:url('http://www.fateheducation.com/customerlab/help26/images/Why-Attend.jpg')"></div>
+                          </figure>
+                          <!-- Text Block -->
+                          <div class="col-md-6 col-md-pull-6 bg-edit bg-blue text-white spotlight-text center-md">
+                              <div class="vertical-center-rel">
+                                  <h5 class="text-uppercase f-w-900 wow slideInLeft attend-fair" style="visibility: visible; animation-name: slideInLeft;">FULL-RANGE OF COURSES AT WORLD-RANKED UNIVERSITIES</h5>
+                                  <!-- <h3 class="f-w-900 m-b-md wow slideInLeft"></h3> -->
+      
+                                  <p class="m-b-md">Irish University delegates will be visiting India to interact with aspiring Indian students and give you a chance to explore a wide choice of programs offered by Universities in Ireland.</p>
+                               <p class="spot">
+                                   • 1-on-1 Interaction 
+                                  </p>
+                                  <p class="spot-decision">
+                                      • Spot Decision
+                                     </p>
+      
+                                  <br>
+                                  <a href="#team6-1" class="btn btn-ghost smooth-scroll text-uppercase" style="color: #439FE0">REGISTER NOW</a>
+                              </div>
+                          </div>
+                      </div><!-- /End Row -->
+      
+                  </div><!-- /End Container  -->
+              </section>
+              <!-- /End Content Intro -->
+      
+      
+              <!-- Back to Top Button -->
+              <a href="#" class="top" style="background-color:#439FE0;">Top</a>
+      
+      
+              <!-- =========================
+             STYLESHEETS 
+          ============================== -->
+      
+      
+              <!-- FONT ICONS -->
+              <link rel="stylesheet" href="http://www.fateheducation.com/customerlab/help26/css/icons/iconfont.css">
+              <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      
+              <!-- GOOGLE FONTS -->
+              <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic" rel="stylesheet" type="text/css">
+      
+              <!-- PLUGINS STYLESHEET -->
+              <link rel="stylesheet" href="http://www.fateheducation.com/customerlab/help26/css/plugins/magnific-popup.css">
+              <link rel="stylesheet" href="http://www.fateheducation.com/customerlab/help26/css/plugins/owl.carousel.css">
+              <link rel="stylesheet" href="http://www.fateheducation.com/customerlab/help26/css/plugins/loaders.css">
+              <link rel="stylesheet" href="http://www.fateheducation.com/customerlab/help26/css/plugins/animate.css">
+              <link rel="stylesheet" href="http://www.fateheducation.com/customerlab/help26/css/plugins/pickadate-default.css">
+              <link rel="stylesheet" href="http://www.fateheducation.com/customerlab/help26/css/plugins/pickadate-default.date.css">
+      
+             
+      
+              <!-- RESPONSIVE FIXES -->
+              <link rel="stylesheet" href="http://www.fateheducation.com/customerlab/help26/css/responsive.css">
+      
+      
+              <!-- =========================
+               SCRIPTS 
+          ============================== -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/jquery1.11.2.min.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/bootstrap.min.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/jquery.easing.1.3.min.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/jquery.countTo.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/jquery.formchimp.min.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/jquery.jCounter-0.1.4.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/jquery.magnific-popup.min.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/jquery.vide.min.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/owl.carousel.min.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/twitterFetcher_min.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/wow.min.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/picker.js"></script> -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/plugins/picker.date.js"></script> -->
+              <!-- Custom Script -->
+              <!-- <script src="http://www.fateheducation.com/customerlab/help26/js/custom.js"></script> -->
+      <!-- DO NOT MODIFY -->
+      <!-- Quora Pixel Code (JS Helper) -->
+      <script>
+          !function(q,e,v,n,t,s){if(q.qp) return; n=q.qp=function(){n.qp?n.qp.apply(n,arguments):n.queue.push(arguments);}; n.queue=[];t=document.createElement(e);t.async=!0;t.src=v; s=document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);}(window, 'script', 'https://a.quora.com/qevents.js');
+          qp('init', '0ea42a6d3ec845878393bf1218af2e9b');
+          qp('track', 'ViewContent');
+          </script>
+          <noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/0ea42a6d3ec845878393bf1218af2e9b/pixel?tag=ViewContent&noscript=1"></noscript>
+          <!-- End of Quora Pixel Code -->
+          <script type="text/javascript">
+              _linkedin_partner_id = "789883";
+              window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+              window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+              </script><script type="text/javascript">
+              (function(){var s = document.getElementsByTagName("script")[0];
+              var b = document.createElement("script");
+              b.type = "text/javascript";b.async = true;
+              b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+              s.parentNode.insertBefore(b, s);})();
+              </script>
+              <noscript>
+              <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=789883&fmt=gif">
+              </noscript>
+              <script type="application/javascript">(function(w,d,t,r,u){w[u]=w[u]||[];w[u].push({'projectId':'10000','properties':{'pixelId':'10063969'}});var s=d.createElement(t);s.src=r;s.async=true;s.onload=s.onreadystatechange=function(){var y,rs=this.readyState,c=w[u];if(rs&&rs!="complete"&&rs!="loaded"){return}try{y=YAHOO.ywa.I13N.fireBeacon;w[u]=[];w[u].push=function(p){y([p])};y(c)}catch(e){}};var scr=d.getElementsByTagName(t)[0],par=scr.parentNode;par.insertBefore(s,scr)})(window,document,"script","https://s.yimg.com/wi/ytc.js","dotq");</script>
+              <!-- Facebook Pixel Code -->
+      <script>
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '477773329023596');
+          fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=477773329023596&ev=PageView&noscript=1"></noscript>
+        <!-- End Facebook Pixel Code -->
+        <!-- Twitter universal website tag code -->
+      <script>
+          !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+          },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+          a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+          // Insert Twitter Pixel ID and Standard Event data below
+          twq('init','nvl9t');
+          twq('track','PageView');
+          </script>
+          <!-- End Twitter universal website tag code -->
+          <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"5424497"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+          <!-- Snap Pixel Code -->
+      <script type="text/javascript">
+          (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+          {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+          a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
+          r.src=n;var u=t.getElementsByTagName(s)[0];
+          u.parentNode.insertBefore(r,u);})(window,document,
+          'https://sc-static.net/scevent.min.js');
+          
+          snaptr('init', '8bdc3884-d16e-4cc0-9593-a8fad829a556', {
+          'user_email': '__INSERT_USER_EMAIL__'
+          });
+          
+          snaptr('track', 'PAGE_VIEW');
+          
+          </script>
+          <!-- End Snap Pixel Code -->
+          <script>
+              !function(e,s,t,i,p,c,n){
+              e.hspixel||((p=e.hspixel=function(){p.process?
+              p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[],
+              p.t=1*new Date,(c=s.createElement("script")).async=1,
+              c.src="https://hspx.hotstar.com/static/pixel/hspixel.js",
+             (n=s.getElementsByTagName("script")[0]).parentNode.insertBefore(c,n)
+             )}(window,document),
+             hspixel("init","fateheducationIR"),
+             hspixel("track","PageView");
+           </script>
+            <noscript>
+              <img height="1" width="1" style="display:none" src="https://hspx.hotstar.com/v1/events/track/cp_page_view?pi=fateheducationIR">
+            </noscript>
+      <!-- CustomerLabs Tag --><script>!function(t,e,r,c,a,n,s){t.ClAnalyticsObject=a,t[a]=t[a]||[],t[a].methods=["trackSubmit","trackClick","pageview","identify","track"],t[a].factory=function(e){return function(){var r=Array.prototype.slice.call(arguments);return r.unshift(e),t[a].push(r),t[a]}};for(var i=0;i<t[a].methods.length;i++){var o=t[a].methods[i];t[a][o]=t[a].factory(o)};n=e.createElement(r),s=e.getElementsByTagName(r)[0],n.async=1,n.crossOrigin="anonymous",n.src=c,s.parentNode.insertBefore(n,s)}(window,document,"script","//cdn.js.customerlabs.co/cl4443n5xu2pl.js","_cl");_cl.SNIPPET_VERSION="1.0.0"</script><!-- End of CustomerLabs Tag -->
+      <!-- Tiktok Code -->
+      <script>
+          (function() {
+            var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true;
+            ta.src = document.location.protocol + '//' + 'static.bytedance.com/pixel/sdk.js?sdkid=BO9D3V16KSL387EOU29G';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ta, s);
+          })();
+          </script>
+      <!-- End of Tiktok Code -->
+      </div><script type="text/javascript"> var MXLandingPageId = '3993c23b-1811-11ea-a83f-0268638e5f02'; </script> <!--LeadSquared Tracking Code Start-->
+      <script type="text/javascript" src="https://web.mxradon.com/t/Tracker.js"></script>
+      <script type="text/javascript">
+            pidTracker('798');
+      </script>
+      <!--LeadSquared Tracking Code End-->
+      
+      
+        </body>
+     <button (click)="uploadLandingPage()" class="btn btn-primary">Submit landing page</button>
+      <button routerLink="/publish" class="btn btn-primary">Go to publish</button>
+      </ng-container>
+
+
+      <!-- Snackbar starts here -->
+      <div id="snackbar">Saved!</div>
+      <!-- Snackbar ends here -->
+
+      <!-- Modal starts here -->
+
+      <div
+        class="modal fade"
+        id="add-blog"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle"> Title</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input
+                class="modal-input"
+                type="text"
+                [(ngModel)]="blogTitle"
+                placeholder="Enter Blog name here"
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="createBlog(blogTitle, contentType)"
+                data-dismiss="modal"
+              >
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal ends here -->
+    </div>
+  </div>
+</div>
