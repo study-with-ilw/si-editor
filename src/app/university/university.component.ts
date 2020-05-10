@@ -14,6 +14,7 @@ import { _ } from "underscore";
   styleUrls: ["./university.component.scss"]
 })
 export class UniversityComponent implements OnInit {
+  blogTitle = '';
   public Editor = InlineEditor;
   public uri = Config.uri;
   public landingPage = false;

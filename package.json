@@ -28,7 +28,7 @@
     "concurrently": "^5.0.0",
     "electron-better-ipc": "^0.7.0",
     "file-system": "^2.2.2",
-    "ngx-chips": "^2.1.0",
+    "ngx-chips": "2.0.2",
     "ngx-electron": "^2.2.0",
     "remote": "^0.2.6",
     "rxjs": "~6.4.0",
