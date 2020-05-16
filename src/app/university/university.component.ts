@@ -7,6 +7,8 @@ import {Config} from '../config/config';
 // import {ElectronService} from 'ngx-electron';
 import { HttpClient } from "@angular/common/http";
 import { _ } from "underscore";
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: "app-university",
@@ -66,7 +68,6 @@ export class UniversityComponent implements OnInit {
   // overwriting particular blog file after button click
 
   public uploadLandingPage(){
-    console.log(this.model);
     this.http.post(`${this.uri}/upload-landing-page`, this.model).toPromise()
     .then((res: any) => {
       this.http.get(`${this.uri}/fetch-list`);
@@ -80,10 +81,17 @@ export class UniversityComponent implements OnInit {
         .post(`${this.uri}/upload`, this.model)
         .toPromise()
         .then((res: any) => {
+
           this.http
             .get(`${this.uri}/fetch-list`)
             .toPromise()
             .then((res: any) => {
+              Swal.fire({
+                icon: 'success',
+                title: 'University has been saved',
+                showConfirmButton: false,
+                timer: 3000
+              });
               this.model.blogList = res.universityList;
               this.blogModel.blogList = res.blogList;
             });
@@ -94,6 +102,12 @@ export class UniversityComponent implements OnInit {
         console.log('news', res);
         this.http.get(`${this.uri}/fetch-list`).toPromise()
         .then((res: any) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'News has been saved',
+            showConfirmButton: false,
+            timer: 3000
+          })
           this.model.blogList = res.universityList;
           this.blogModel.blogList = res.blogList;
           this.model.newsList = res.newsList;
@@ -105,6 +119,12 @@ export class UniversityComponent implements OnInit {
       .then((res: any) => {
         this.http.get(`${this.uri}/fetch-list`).toPromise()
         .then((res: any) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Event has been saved',
+            showConfirmButton: false,
+            timer: 3000
+          })
           this.model.blogList = res.universityList;
           this.blogModel.blogList = res.blogList;
           this.model.newsList = res.newsList;
@@ -120,6 +140,12 @@ export class UniversityComponent implements OnInit {
             .get(`${this.uri}/fetch-list`)
             .toPromise()
             .then((res: any) => {
+              Swal.fire({
+                icon: 'success',
+                title: 'Blog has been saved',
+                showConfirmButton: false,
+                timer: 3000
+              })
               this.model.blogList = res.universityList;
               this.blogModel.blogList = res.blogList;
             });
