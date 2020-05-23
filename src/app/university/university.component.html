@@ -235,19 +235,18 @@
       </nav>
       <label for="upload-image" class="btn btn-info">Add University Image</label>
       <input
-        #file
+        #unifile
         id="upload-image"
         type="file"
-        accept="image/*"
-        (change)="preview(file.files)"
+        (change)="preview(unifile.files)"
       />
       <label for="upload-logo" class="btn btn-info">Add University logo</label>
       <input
-        #file
+        #logofile
         id="upload-logo"
         type="file"
         accept="image/*"
-        (change)="logo(file.files)"
+        (change)="logo(logofile.files)"
       />
       <div class="university-landing-image" style="width: 100%; height:340px">
         <img

@@ -29,4 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Build
 ng build --prod --output-path dist --base-href "http://editor.studyin-ireland.in"
 ## Deploy
-sudo ngh --dir=dist --no-silent 
+sudo ngh --dir=dist --no-silent --cname=http://editor.studyin-ireland.in

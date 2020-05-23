@@ -77,6 +77,7 @@ export class UniversityComponent implements OnInit {
   public uploadPost(type): void {
     this.model.blogData.publish = type;
     if (this.contentType === "university") {
+      console.log(this.model);
       this.http
         .post(`${this.uri}/upload`, this.model)
         .toPromise()
@@ -99,7 +100,6 @@ export class UniversityComponent implements OnInit {
     } else if(this.contentType === 'news'){
       this.http.post(`${this.uri}/upload-news`, this.model).toPromise()
       .then((res: any) => {
-        console.log('news', res);
         this.http.get(`${this.uri}/fetch-list`).toPromise()
         .then((res: any) => {
           Swal.fire({
@@ -199,12 +199,10 @@ export class UniversityComponent implements OnInit {
   }
 
   delete(list, type) {
-    console.log(list, type);
     this.http
       .post(`${this.uri}/delete`, { title: list, type })
       .toPromise()
       .then(res => {
-        console.log(res);
         this.http
           .get(`${this.uri}/fetch-list`)
           .toPromise()
@@ -223,7 +221,6 @@ export class UniversityComponent implements OnInit {
       .post(`${this.uri}/create`, { title: blogName, type })
       .toPromise()
       .then(res => {
-        console.log(res);
         this.http
           .get(`${this.uri}/fetch-list`)
           .toPromise()
@@ -263,7 +260,6 @@ export class UniversityComponent implements OnInit {
   }
 
   logo(files) {
-    console.log(files)
     if (files.length === 0) return;
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
