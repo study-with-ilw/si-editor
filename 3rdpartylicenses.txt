@@ -140,7 +140,13 @@ MIT
 ngx-chips
 MIT
 
+ngx-clipboard
+MIT
+
 ngx-electron
+MIT
+
+ngx-window-token
 MIT
 
 rxjs
