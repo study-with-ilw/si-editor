@@ -12,6 +12,7 @@ import { NgxElectronModule } from 'ngx-electron';
 import { TagInputModule } from 'ngx-chips';
 import { UniversityComponent } from './university/university.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ClipboardModule } from 'ngx-clipboard';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     ReactiveFormsModule,
     HttpClientModule,
     SweetAlert2Module.forRoot(),
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

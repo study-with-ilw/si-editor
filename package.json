@@ -29,6 +29,7 @@
     "electron-better-ipc": "^0.7.0",
     "file-system": "^2.2.2",
     "ngx-chips": "2.0.2",
+    "ngx-clipboard": "^12.3.0",
     "ngx-electron": "^2.2.0",
     "remote": "^0.2.6",
     "rxjs": "~6.4.0",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.1",
+    "@angular/cdk": "^9.2.4",
     "@angular/cli": "~8.1.1",
     "@angular/compiler-cli": "~8.1.1",
     "@angular/language-service": "~8.1.1",
